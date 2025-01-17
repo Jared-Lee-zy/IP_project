@@ -127,3 +127,15 @@
     background-color:grey;
     color:greenyellow;
 }
+
+.homepage-container {
+    width:100%;
+    padding-top:110px;
+}
+
+
+.homepage-background {
+    width:100%;
+    opacity:0.8;
+
+}
