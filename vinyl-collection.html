@@ -26,10 +26,47 @@
                 </div>
             </div>
         </div>
-        
+    
+    <div class="main-content">
+
         <div class="search-bar">
-            
+            <input type="text" placeholder="Search for vinyls">
         </div>
+
+        
+        <div class="collection-container">
+            <div class="filter">
+                <h2>Filter by Genre</h2>
+                <ul>
+                    <li><label><input type="checkbox" value="hiphop"> Hip Hop</label></li>
+                    <li><label><input type="checkbox" value="pop"> Pop</label></li>
+                    <li><label><input type="checkbox" value="rock"> Rock</label></li>
+                    <li><label><input type="checkbox" value="rnb"> Rnb</label></li>
+                    <li><label><input type="checkbox" valye="jazz"> Jazz</label></li>
+                </ul>
+            </div>
+            <div class="collection">
+                <h1>Vinyl Collection</h1>
+                <div class="vinyl-grid">
+ 
+                    <div class="vinyl-item" data-genre="hiphop">
+                        <img src="images/tpab.jpg" alt="TPAB">
+                        <h2>To Pimp A Butterfly - Kendrick Lamar</h2>
+                        <p>$19.99</p>
+                        <button class="add-cart">Add to Cart</button>
+                    </div>
+                    <div class="vinyl-item" data-genre="hiphop">
+                        <img src="images/kids-see-ghost.jpg" alt="Kids See Ghost">
+                        <h2>Kids See Ghost - Kanye West</h2>
+                        <p>$24.99</p>
+                        <button class="add-cart">Add to Cart</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -42,6 +79,35 @@
                 <a target="_blank" class="fab fa-youtube"></a>
             </div>
         </footer>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const filterCheckboxes = document.querySelectorAll('.filter input[type="checkbox"]');
+                const vinylItems = document.querySelectorAll('.vinyl-item');
+                const searchBar = document.querySelector('.search-bar input');
+    
+                const filterVinyls = () => {
+                    const selectedGenres = Array.from(filterCheckboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value);
+                    const searchText = searchBar.value.toLowerCase();
+    
+                    vinylItems.forEach(item => {
+                        const name = item.querySelector('h2').textContent.toLowerCase();
+                        const itemGenre = item.getAttribute('data-genre');
+                        const matchesGenre = !selectedGenres.length || selectedGenres.includes(itemGenre);
+                        const matchesSearch = name.includes(searchText);
+    
+                        item.style.display = matchesGenre && matchesSearch ? 'block' : 'none';
+                    });
+                };
+    
+                filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterVinyls));
+                searchBar.addEventListener('input', filterVinyls);
+            });
+        </script>
+
 
     </body>
 </html>
