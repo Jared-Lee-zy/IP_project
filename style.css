@@ -488,3 +488,16 @@ body {
 #spotify-embed {
     width:80%;
 }
+
+/* Sign up page */
+
+.signup-container {
+    margin-top: 250px;
+}
+
+
+/* Login page */
+
+.login-container {
+    margin-top: 250px;
+}
