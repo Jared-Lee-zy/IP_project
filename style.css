@@ -97,26 +97,26 @@
     padding:10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1002;
-    width:120px;
-    height:80px;
+    width:160px;
     opacity:0;
     transition:all ease 0.3s;
     display:flex;
     flex-direction:column;
     align-items:center;
-
+    overflow:hidden;
 
 }
 
 .account-button:hover .overlay {
-    display:block;
+    display:flex;
     opacity: 1;
 
 }
 
-.login-button, .signup-button {
+.overlay a {
     display: block;
     width:100%;
+    border-radius:5px;
     padding: 10px;
     background-color: transparent;
     border: none;
@@ -127,7 +127,7 @@
     transition:all ease 0.3s;
 }
 
-.login-button:hover, .signup-button:hover {
+.overlay a:hover {
     background-color:grey;
     color:greenyellow;
 }
@@ -491,10 +491,64 @@ body {
 
 /* Sign up page */
 
-.signup-container {
-    margin-top: 250px;
+.login-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
 }
 
+.signup-container {
+    width:50%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+.signupform {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.signupform h2 {
+    margin-bottom: 20px;
+    font-size:24px;
+}
+
+.signupform label {
+    margin-bottom: 10px;
+    width:100%;
+    text-align:left;
+    font-size:16px;
+
+}
+
+.signupform input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    width:100%;
+}
+
+.signupform button {
+    margin-top:20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightskyblue;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signupform button:hover {
+    background-color: lightskyblue;
+}
 
 /* Login page */
 
