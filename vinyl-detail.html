@@ -8,7 +8,9 @@
     </head>
     <body>
         <div class="header">
-            <img class="logo" src="images/site-logo.png" alt="site logo">
+            <a href="index.html">    
+                <img class="logo" src="images/site-logo.png" alt="site logo">
+            </a>
             <div class="navbar">
                 <a href="vinyl.html">Vinyl Records</a>
                 <a href="turntable.html">Turntables</a>
@@ -43,6 +45,14 @@
 
         <div class="spotify-container">
             <div id="spotify-embed"></div>
+        </div>
+
+        <div id="login-overlay" class="login-overlay">
+            <div class="login-overlay-content">
+                <p>You must login or sign up to add items to the cart.</p>
+                <a href="login.html" class="login-overlay-button">Login</a>
+                <a href="signup.html" class="signup-overlay-button">Sign Up</a>
+            </div>
         </div>
 
 
@@ -116,6 +126,22 @@
             document.addEventListener('DOMContentLoaded', () => {
                 const albumId = getAlbumIdFromUrl();
                 loadAlbumDetails(albumId);
+            });
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const addToCartButton = document.querySelector('.add-to-cart');
+                const overlay = document.getElementById('login-overlay');
+
+                addToCartButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    overlay.style.display = 'flex';
+                });
+
+                overlay.addEventListener('click', (event) => {
+                    if (event.target === overlay) {
+                        overlay.style.display = 'none';
+                    }
+                });
             });
         </script>
 
