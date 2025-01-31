@@ -126,6 +126,7 @@
     color:white;
     text-decoration:none;
     transition:all ease 0.3s;
+    margin:0;
 }
 
 .overlay a:hover {
@@ -507,6 +508,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    opacity:0.8;
 }
 
 
@@ -574,6 +576,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    opacity:0.8;
 }
 
 #loginForm {

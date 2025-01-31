@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vinyl Collection</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <div class="header">
+            <img class="logo" src="images/site-logo.png" alt="site logo">
+            <div class="navbar">
+                <a href="index-logged-in.html">Home</a>
+                <a href="turntable-logged-in.html">Turntables</a>
+                <div class="icons">
+                    <button class="cart-button">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                    <div class="account-button">
+                        <i class="fas fa-user"></i> Account
+                        <div class="overlay">
+                            <a href="index.html" class="logout-button">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search for vinyls">
+            </div>
+    
+            
+            <div class="collection-container">
+                <div class="filter">
+                    <h2>Filter by Genre</h2>
+                    <ul>
+                        <li><label><input type="checkbox" value="hiphop"> Hip Hop</label></li>
+                        <li><label><input type="checkbox" value="pop"> Pop</label></li>
+                        <li><label><input type="checkbox" value="rock"> Rock</label></li>
+                        <li><label><input type="checkbox" value="rnb"> Rnb</label></li>
+                        <li><label><input type="checkbox" valye="jazz"> Jazz</label></li>
+                    </ul>
+                </div>
+                <div class="collection">
+                    <h1>Vinyl Collection</h1>
+                    <div class="vinyl-grid">
+     
+                        <div class="vinyl-item" data-genre="hiphop" data-id="tpab">
+                            <img src="images/tpab.jpg" alt="TPAB">
+                            <h2>To Pimp A Butterfly - Kendrick Lamar</h2>
+                            <p>$46.00</p>
+                            <a href="vinyl-detail.html?id=tpab" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="hiphop" data-id="ksg">
+                            <img src="images/kids-see-ghost.jpg" alt="Kids See Ghost">
+                            <h2>Kids See Ghost - Kanye West</h2>
+                            <p>$38.00</p>
+                            <a href="vinyl-detail.html?id=ksg" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="rnb" data-id="24k">
+                            <img src="images/24k-magic.jpg" alt="24K Magic">
+                            <h2>24K Magic - Bruno Mars</h2>
+                            <p>$37.00</p>
+                            <a href="vinyl-detail.html?id=24k" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="jazz" data-id="sinatra">
+                            <img src="images/frank-sinatra.jpg" alt="Utimate Sinatra">
+                            <h2>Ultimate Sinatra - Frank Sinatra</h2>
+                            <p>$54.00</p>
+                            <a href="vinyl-detail.html?id=sinatra" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="hiphop" data-id="damn">
+                            <img src="images/damn.jpg" alt="Damn">
+                            <h2>Damn - Kendrick Lamar</h2>
+                            <p>$54.00</p>
+                            <a href="vinyl-detail.html?id=damn" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="hiphop" data-id="heroes">
+                            <img src="images/heroes-villains.jpg" alt="Heroes Villains">
+                            <h2>Heroes & Villains - Metro Boomin</h2>
+                            <p>$40.00</p>
+                            <a href="vinyl-detail.html?id=heroes" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="pop" data-id="jukebox">
+                            <img src="images/jukebox.jpg" alt="Unorthodox Jukebox">
+                            <h2>Unorthodox Jukebox - Bruno Mars</h2>
+                            <p>$34.00</p>
+                            <a href="vinyl-detail.html?id=jukebox" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="hiphop" data-id="mad">
+                            <img src="images/madvillainy.jpg" alt="Madvillainy">
+                            <h2>Madvillainy - MF Doom</h2>
+                            <p>$46.00</p>
+                            <a href="vinyl-detail.html?id=mad" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="hiphop" data-id="rodeo">
+                            <img src="images/rodeo.jpg" alt="Rodeo">
+                            <h2>Rodeo - Travis Scott</h2>
+                            <p>$41.00</p>
+                            <a href="vinyl-detail.html?id=rodeo" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="hiphop" data-id="trust">
+                            <img src="images/trust-you.jpg" alt="We Don't Trust You">
+                            <h2>We Dont Trust You - Metro Boomin</h2>
+                            <p>$58.00</p>
+                            <a href="vinyl-detail.html?id=trust" class="add-cart">Add to Cart</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="hiphop" data-id="ye">
+                            <img src="images/ye.jpg" alt="Ye">
+                            <h2>Ye - Kanye West</h2>
+                            <p>$50.00</p>
+                            <a href="vinyl-detail.html?id=ye" class="add-cart">Add to Cart</a>
+                        </div>
+    
+    
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <footer class="footer-container">
+            <img class="mini-logo" src="images/design-title.png" alt="mini logo">
+            <div class="socials">
+                <a target="_blank" class="fab fa-facebook"></a>
+                <a target="_blank" class="fab fa-twitter"></a>
+                <a target="_blank" class="fab fa-instagram"></a>
+                <a target="_blank" class="fab fa-youtube"></a>
+            </div>
+        </footer>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const filterCheckboxes = document.querySelectorAll('.filter input[type="checkbox"]');
+                const vinylItems = document.querySelectorAll('.vinyl-item');
+                const searchBar = document.querySelector('.search-bar input');
+    
+                const filterVinyls = () => {
+                    const selectedGenres = Array.from(filterCheckboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value);
+                    const searchText = searchBar.value.toLowerCase();
+    
+                    vinylItems.forEach(item => {
+                        const name = item.querySelector('h2').textContent.toLowerCase();
+                        const itemGenre = item.getAttribute('data-genre');
+                        const matchesGenre = !selectedGenres.length || selectedGenres.includes(itemGenre);
+                        const matchesSearch = name.includes(searchText);
+    
+                        item.style.display = matchesGenre && matchesSearch ? 'block' : 'none';
+                    });
+                };
+    
+                filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterVinyls));
+                searchBar.addEventListener('input', filterVinyls);
+            });
+        </script>
+
+
+    </body>
+</html>
