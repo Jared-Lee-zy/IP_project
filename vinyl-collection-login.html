@@ -54,67 +54,67 @@
                             <img src="images/tpab.jpg" alt="TPAB">
                             <h2>To Pimp A Butterfly - Kendrick Lamar</h2>
                             <p>$46.00</p>
-                            <a href="vinyl-detail.html?id=tpab" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=tpab" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="hiphop" data-id="ksg">
                             <img src="images/kids-see-ghost.jpg" alt="Kids See Ghost">
                             <h2>Kids See Ghost - Kanye West</h2>
                             <p>$38.00</p>
-                            <a href="vinyl-detail.html?id=ksg" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=ksg" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="rnb" data-id="24k">
                             <img src="images/24k-magic.jpg" alt="24K Magic">
                             <h2>24K Magic - Bruno Mars</h2>
                             <p>$37.00</p>
-                            <a href="vinyl-detail.html?id=24k" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=24k" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="jazz" data-id="sinatra">
                             <img src="images/frank-sinatra.jpg" alt="Utimate Sinatra">
                             <h2>Ultimate Sinatra - Frank Sinatra</h2>
                             <p>$54.00</p>
-                            <a href="vinyl-detail.html?id=sinatra" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=sinatra" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="hiphop" data-id="damn">
                             <img src="images/damn.jpg" alt="Damn">
                             <h2>Damn - Kendrick Lamar</h2>
                             <p>$54.00</p>
-                            <a href="vinyl-detail.html?id=damn" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=damn" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="hiphop" data-id="heroes">
                             <img src="images/heroes-villains.jpg" alt="Heroes Villains">
                             <h2>Heroes & Villains - Metro Boomin</h2>
                             <p>$40.00</p>
-                            <a href="vinyl-detail.html?id=heroes" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=heroes" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="pop" data-id="jukebox">
                             <img src="images/jukebox.jpg" alt="Unorthodox Jukebox">
                             <h2>Unorthodox Jukebox - Bruno Mars</h2>
                             <p>$34.00</p>
-                            <a href="vinyl-detail.html?id=jukebox" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=jukebox" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="hiphop" data-id="mad">
                             <img src="images/madvillainy.jpg" alt="Madvillainy">
                             <h2>Madvillainy - MF Doom</h2>
                             <p>$46.00</p>
-                            <a href="vinyl-detail.html?id=mad" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=mad" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="hiphop" data-id="rodeo">
                             <img src="images/rodeo.jpg" alt="Rodeo">
                             <h2>Rodeo - Travis Scott</h2>
                             <p>$41.00</p>
-                            <a href="vinyl-detail.html?id=rodeo" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=rodeo" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="hiphop" data-id="trust">
                             <img src="images/trust-you.jpg" alt="We Don't Trust You">
                             <h2>We Dont Trust You - Metro Boomin</h2>
                             <p>$58.00</p>
-                            <a href="vinyl-detail.html?id=trust" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=trust" class="view">View</a>
                         </div>
                         <div class="vinyl-item" data-genre="hiphop" data-id="ye">
                             <img src="images/ye.jpg" alt="Ye">
                             <h2>Ye - Kanye West</h2>
                             <p>$50.00</p>
-                            <a href="vinyl-detail.html?id=ye" class="add-cart">Add to Cart</a>
+                            <a href="vinyl-detail-login.html?id=ye" class="view">View</a>
                         </div>
     
     
@@ -161,6 +161,16 @@
                 filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterVinyls));
                 searchBar.addEventListener('input', filterVinyls);
             });
+
+            document.querySelector('.logout-button').addEventListener('click', () => {
+
+                localStorage.removeItem('user');
+
+
+                window.location.href = 'index.html'; 
+            });
+
+            
         </script>
 
 

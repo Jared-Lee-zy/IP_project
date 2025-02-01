@@ -38,7 +38,7 @@
                 <p id="album-description" class="description">Description</p>
                 <p id="album-release-date">Release Date:</p>
                 <h3 id="album-price">Price: $0.00</h3>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart-final">Add to Cart</button>
             </div>
         </div>
 
@@ -117,6 +117,15 @@
             document.addEventListener('DOMContentLoaded', () => {
                 const albumId = getAlbumIdFromUrl();
                 loadAlbumDetails(albumId);
+            });
+
+
+            document.querySelector('.logout-button').addEventListener('click', () => {
+
+                localStorage.removeItem('user'); 
+
+
+                window.location.href = 'index.html'; 
             });
         </script>
 
