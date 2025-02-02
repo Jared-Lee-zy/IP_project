@@ -533,6 +533,36 @@ body {
     background-color:darkgreen;
 }
 
+.add-to-cart-final {
+    padding: 10px 20px;
+    background-color: forestgreen;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 32px;
+    border-radius:10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all ease 0.3s;
+}
+
+.add-to-cart-final:hover {
+    background-color: green;
+    transform:scale(1.1);
+    background-color:darkgreen;
+}
+
+#lottie-animation {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 200px; 
+    height: 200px; 
+}
+
+
 .spotify-container {
     display:flex;
     justify-content:center;

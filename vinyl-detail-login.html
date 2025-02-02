@@ -5,6 +5,7 @@
         <title>Revolv</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     </head>
     <body>
         <div class="header">
@@ -31,6 +32,17 @@
             </div>
         </div>
 
+        <div id="lottie-animation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+            <lottie-player 
+                id="lottie-player"
+                src="https://lottie.host/5e831e3a-39d2-451b-85a7-07894276cddc/vtPxQ0el5Z.json" 
+                background="transparent" 
+                speed="1" 
+                loop="false" 
+                autoplay>
+            </lottie-player>
+        </div>
+
         <div class="album-container">
             <div class="album-left">
                 <img id="album-cover" src="" alt="Album Cover" class="album-cover">
@@ -41,7 +53,7 @@
                 <p id="album-description" class="description">Description</p>
                 <p id="album-release-date">Release Date:</p>
                 <h3 id="album-price">Price: $0.00</h3>
-                <button class="add-to-cart-final">Add to Cart</button>
+                <button id="add-to-cart-final" class="add-to-cart-final">Add to Cart</button>
             </div>
         </div>
 
@@ -123,11 +135,26 @@
             });
             
             document.querySelector('.logout-button').addEventListener('click', () => {
-
                 localStorage.removeItem('user'); 
-
-
                 window.location.href = 'index.html'; 
+            });
+
+            document.getElementById('add-to-cart-final').addEventListener('click', function() {
+
+                const animation = document.getElementById('lottie-animation');
+                animation.style.display = 'block';
+
+                const albumId = getAlbumIdFromUrl();
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (!cart.includes(albumId)) {
+                    cart.push(albumId);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
+
+                setTimeout(() => {
+                    animation.style.display = 'none';
+                }, 2000);  
             });
 
         </script>
