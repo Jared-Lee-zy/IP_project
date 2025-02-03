@@ -31,10 +31,22 @@
             </div>
         </div>
 
+        <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">   
+
+        <div class="cart-page">
+            <div class="cart-container">
+                <h1>Your Cart</h1>
+                <div id="cart-items"></div>
+            </div>
+            <div class="checkout-container">
+                <h2>Total Price: $<span id="total-price">0.00</span></h2>
+                <button id="checkout-button">Proceed to Checkout</button>
+            </div>
+        </div>
 
 
 
-        
+
         <footer class="footer-container">
             <img class="mini-logo" src="images/design-title.png" alt="mini logo">
             <div class="socials">
@@ -45,7 +57,76 @@
             </div>
         </footer>
 
+        <script>
+            const albums = {
+                "tpab": { "cover": "images/tpab.jpg", "title": "To Pimp A Butterfly", "price": 46.00 },
+                "ksg": { "cover": "images/kids-see-ghost.jpg", "title": "Kids See Ghost", "price": 38.00 },
+                "24k": { "cover": "images/24k-magic.jpg", "title": "24K Magic", "price": 37.00 }
+            };
 
+            function loadCart() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let cartContainer = document.getElementById('cart-items');
+                let totalPrice = 0;
+                cartContainer.innerHTML = "";
+
+                cart.forEach(albumId => {
+                    let album = albums[albumId];
+                    if (album) {
+                        let cartItem = document.createElement('div');
+                        cartItem.classList.add('cart-item');
+                        cartItem.innerHTML = `
+                            <img src="${album.cover}" alt="${album.title}" class="cart-album-cover">
+                            <div class="cart-album-details">
+                                <h2>${album.title}</h2>
+                                <p class="album-price">Price: $<span class="price">${album.price}</span></p>
+                                <label for="quantity-${albumId}">Quantity:</label>
+                                <select id="quantity-${albumId}" class="quantity" data-id="${albumId}">
+                                    ${Array.from({ length: 10 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('')}
+                                </select>
+                                <p>Total: $<span class="total-price">${album.price}</span></p>
+                                <button class="remove-item" data-id="${albumId}">X</button>
+                            </div>
+                        `;
+                        cartContainer.appendChild(cartItem);
+                        totalPrice += album.price;
+                    }
+                });
+                document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                loadCart();
+                document.getElementById('cart-items').addEventListener('change', function(event) {
+                    if (event.target.classList.contains('quantity')) {
+                        let albumId = event.target.getAttribute('data-id');
+                        let quantity = parseInt(event.target.value);
+                        let price = albums[albumId].price;
+                        let totalPriceElement = event.target.closest('.cart-album-details').querySelector('.total-price');
+                        totalPriceElement.textContent = (quantity * price).toFixed(2);
+                        
+                        let total = Array.from(document.querySelectorAll('.total-price')).reduce((sum, el) => sum + parseFloat(el.textContent), 0);
+                        document.getElementById('total-price').textContent = total.toFixed(2);
+                    }
+                });
+
+                document.getElementById('cart-items').addEventListener('click', function(event) {
+                    if (event.target.classList.contains('remove-item')) {
+                        let albumId = event.target.getAttribute('data-id');
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        let updatedCart = cart.filter(id => id !== albumId);
+                        localStorage.setItem('cart', JSON.stringify(updatedCart));
+                        loadCart();
+                    }
+                });
+
+                document.getElementById('checkout-button').addEventListener('click', function() {
+                    let totalPrice = parseFloat(document.getElementById('total-price').text-content);
+                    localStorage.setItem('totalPrice', totalPrice.toFixed(2));
+                    window.location.href = 'checkout-login.html';
+                });
+            });
+        </script>
 
 
     </body>
