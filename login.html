@@ -76,12 +76,23 @@
                 try {
                     const response = await fetch(`https://revolv-096e.restdb.io/rest/user-data?q={"username":"${username}","password":"${password}"}`, {
                         method: 'GET',
-                        headers: { 'x-apikey': '679508112e4264385dd23961' }
+                        mode: 'no-cors',
+                        headers: {
+                            'x-apikey': '67a5f498f59921112448b97c',
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        mode: 'cors'
                     });
+
+                    if (!response.ok) {
+                        throw new Error(`Server responded with status ${response.status}`);
+                    }
 
                     const users = await response.json();
 
                     if (users.length > 0) {
+                        localStorage.setItem('userId', users[0]._id);
                         alert('Login successful!');
                         window.location.href = 'index-login.html'; 
                     } else {
@@ -89,7 +100,7 @@
                     }
                 } catch (error) {
                     console.error('Error during login:', error);
-                    alert('An error occurred. Please try again later.');
+                    alert(`An error occurred: ${error.message}`);
                 }
             });
         </script>

@@ -93,12 +93,15 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'x-apikey': '679508112e4264385dd23961'
+                            'x-apikey': '67a5f498f59921112448b97c'
                         },
                         body: JSON.stringify(userData)
                     });
 
                     if (response.ok) {
+                        const createdUser = await response.json();
+                        localStorage.setItem('userId', createdUser._id);
+
                         alert('Signup successful!');
                         window.location.href = 'index-login.html';
                     } else {

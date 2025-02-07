@@ -18,12 +18,13 @@
                     <div class="cart-button">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <div class="view-login-cart-overlay">
-                            <a href="cart.html" class="view-login-cart-overlay-btn">View Cart</a>
+                            <a href="cart-login.html" class="view-login-cart-overlay-btn">View Cart</a>
                         </div>
                     </div>
                     <div class="account-button">
                         <i class="fas fa-user"></i> Account
                         <div class="overlay">
+                            <div class="user-points">Points: <span id="userPoints">0</span></div>
                             <a href="index.html" class="logout-button">Sign Out</a>
                         </div>
                     </div>
@@ -127,6 +128,25 @@
                 });
             });
 
+
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user && user.email) {
+                fetch('https://revolv-096e.restdb.io/rest/user-data?q={"email":"' + user.email + '"}', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-apikey': '67a5f498f59921112448b97c',
+                        'cache-control': 'no-cache'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        document.getElementById('userPoints').textContent = data[0].points || 0;
+                    }
+                })
+                .catch(error => console.error('Error fetching user data:', error));
+            }
 
         </script>
 

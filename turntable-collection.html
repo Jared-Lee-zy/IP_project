@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset ="UTF-8">
+        <title>Revolv</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <div class="header">
+            <a href="index.html">    
+                <img class="logo" src="images/site-logo.png" alt="site logo">
+            </a>
+            <div class="navbar">
+                <a href="vinyl.html">Vinyl Records</a>
+                <a href="turntable.html">Turntables</a>
+                <div class="icons">
+                    <div class="cart-button">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="view-login-cart-overlay">
+                            <p>Login or Signup to View Cart</p>
+                            <a href="login.html" class="view-login-cart-overlay-btn">Login</a>
+                            <a href="signup.html" class="view-login-cart-overlay-btn">Signup</a>
+                        </div>
+                    </div>
+                    <div class="account-button">
+                        <i class="fas fa-user"></i> Account
+                        <div class="overlay">
+                            <a href="login.html">Login</a>
+                            <a href="signup.html">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <div class="main-content">
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for vinyls">
+        </div>
+
+        
+        <div class="collection-container">
+            <div class="filter">
+                <h2>Filter by Brand</h2>
+                <ul>
+                    <li><label><input type="checkbox" value="crosley"> Crosley</label></li>
+                    <li><label><input type="checkbox" value="audio"> Audio Technica</label></li>
+                    <li><label><input type="checkbox" value="hmv"> HMV</label></li>
+                </ul>
+            </div>
+            <div class="collection">
+                <h1>Turntable Collection</h1>
+                <div class="turntable-grid">
+ 
+                    <div class="turntable-item" data-brand="crosley" data-id="stave">
+                        <img src="images/crosley_angle.png" alt="STAVE">
+                        <h2>Stave Record Player - Crosley</h2>
+                        <p>$295.00</p>
+                        <a href="turntable-detail.html?id=stave" class="view">View</a>
+                    </div>
+                    <div class="turntable-item" data-brand="hmv" data-id="voice">
+                        <img src="images/HMV_angle.jpeg" alt="HMV">
+                        <h2>His Master's Voice Antique Turntable - HMV</h2>
+                        <p>$1235.00</p>
+                        <a href="turntable-detail.html?id=voice" class="view">View</a>
+                    </div>
+                    <div class="turntable-item" data-brand="crosley" data-id="voyager">
+                        <img src="images/voyager_angle.png" alt="VOYAGER">
+                        <h2>Voyager Portable Turntable - Crosley</h2>
+                        <p>$135.00</p>
+                        <a href="turntable-detail.html?id=voyager" class="view">View</a>
+                    </div>
+                    <div class="turntable-item" data-brand="audio" data-id="lp">
+                        <img src="images/audio_angle.png" alt="LP70XBT">
+                        <h2>LB70XBT Turntable - Audio Technica</h2>
+                        <p>$340.00</p>
+                        <a href="turntable-detail.html?id=ip" class="view">View</a>
+                    </div>
+                    <div class="turntable-item" data-brand="crosley" data-id="c62">
+                        <img src="images/c62_angle.png" alt="C62">
+                        <h2>C62 Shelf System - Crosley</h2>
+                        <p>$320.00</p>
+                        <a href="turntable-detail.html?id=c62" class="view">View</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <footer class="footer-container">
+            <img class="mini-logo" src="images/design-title.png" alt="mini logo">
+            <div class="socials">
+                <a target="_blank" class="fab fa-facebook"></a>
+                <a target="_blank" class="fab fa-twitter"></a>
+                <a target="_blank" class="fab fa-instagram"></a>
+                <a target="_blank" class="fab fa-youtube"></a>
+            </div>
+        </footer>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const filterCheckboxes = document.querySelectorAll('.filter input[type="checkbox"]');
+                const turntableItems = document.querySelectorAll('.turntable-item');
+                const searchBar = document.querySelector('.search-bar input');
+    
+                const filterTurntables = () => {
+                    const selectedBrands = Array.from(filterCheckboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value);
+                    const searchText = searchBar.value.toLowerCase();
+    
+                    turntableItems.forEach(item => {
+                        const name = item.querySelector('h2').textContent.toLowerCase();
+                        const itemBrand = item.getAttribute('data-brand');
+                        const matchesBrand = !selectedBrands.length || selectedBrands.includes(itemBrand);
+                        const matchesSearch = name.includes(searchText);
+    
+                        item.style.display = matchesBrand && matchesSearch ? 'block' : 'none';
+                    });
+                };
+    
+                filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterTurntables));
+                searchBar.addEventListener('input', filterTurntables);
+            });
+        </script>
+
+
+    </body>
+</html>
