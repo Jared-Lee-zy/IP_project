@@ -6,156 +6,168 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
 </head>
-<body>
-    <div class="header">
-        <a href="index-login.html">    
-            <img class="logo" src="images/site-logo.png" alt="site logo">
-        </a>
-        <div class="navbar">
-            <a href="vinyl-collection-login.html">Vinyl Records</a>
-            <a href="turntable-collection-login.html">Turntables</a>
-            <div class="icons">
-                <div class="cart-button">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <div class="view-login-cart-overlay">
-                        <a href="cart-login.html" class="view-login-cart-overlay-btn">View Cart</a>
+    <body>
+        <div class="header">
+            <a href="index-login.html">
+                <img class="logo" src="images/site-logo.png" alt="site logo">
+            </a>
+            <div class="navbar">
+                <a href="vinyl-collection-login.html">Vinyl Records</a>
+                <a href="turntable-collection-login.html">Turntables</a>
+                <div class="icons">
+                    <div class="cart-button">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="view-login-cart-overlay">
+                            <a href="cart-login.html" class="view-login-cart-overlay-btn">View Cart</a>
+                        </div>
                     </div>
-                </div>
-                <div class="account-button">
-                    <i class="fas fa-user"></i> Account
-                    <div class="overlay">
-                        <div class="user-points">Points: <span id="userPoints">0</span></div>
-                        <a href="index.html" class="logout-button">Sign Out</a>
+                    <div class="account-button">
+                        <i class="fas fa-user"></i> Account
+                        <div class="overlay">
+                            <div class="user-points">Points: <span id="userPoints">0</span></div>
+                            <a href="index.html" class="logout-button">Sign Out</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">   
+        <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">
 
-    <div class="discount-container">
-        <h1>Discounts</h1>
-        <div class="discount-options">
-            <div class="discount">
-                <img src="images/revolv_10percent.jpeg" alt="10% Discount">
-                <button class="apply-discount" data-discount="0.10" data-points="100">Apply 10% Discount (100 points)</button>
+        <div class="discount-container">
+            <h1>Discounts</h1>
+            <div class="discount-options">
+                <div class="discount">
+                    <img src="images/revolv_10percent.jpeg" alt="10% Discount">
+                    <button class="apply-discount" data-discount="0.10" data-points="100">Apply 10% Discount (100 points)</button>
+                </div>
+                <div class="discount">
+                    <img src="images/revolv_20percent.jpeg" alt="20% Discount">
+                    <button class="apply-discount" data-discount="0.20" data-points="180">Apply 20% Discount (180 points)</button>
+                </div>
+                <div class="discount">
+                    <img src="images/revolv_30percent.jpeg" alt="30% Discount">
+                    <button class="apply-discount" data-discount="0.30" data-points="250">Apply 30% Discount (250 points)</button>
+                </div>
             </div>
-            <div class="discount">
-                <img src="images/revolv_20percent.jpeg" alt="20% Discount">
-                <button class="apply-discount" data-discount="0.20" data-points="180">Apply 20% Discount (180 points)</button>
-            </div>
-            <div class="discount">
-                <img src="images/revolv_30percent.jpeg" alt="30% Discount">
-                <button class="apply-discount" data-discount="0.30" data-points="250">Apply 30% Discount (250 points)</button>
-            </div>
+
+            <p class="points-price">Points: <span id="user-points">0</span></p>
+            <p class="points-price">Total Price: $<span id="total-price">0.00</span></p>
+            <p class="points-price">Amount of Points Earned: <span id="earned-points">0</span></p>
+            <button id="place-order">Place Order</button>
         </div>
 
-        <p class="points-price">Points: <span id="user-points">0</span></p>
-        <p class="points-price">Total Price: $<span id="total-price">0.00</span></p>
-        <p class="points-price">Amount of Points Earned: <span id="earned-points">0</span></p>
-        <button id="place-order">Place Order</button>
-    </div>
-
-    <div id="lottie-animation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
-        <lottie-player 
+        <div id="lottie-animation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+            <lottie-player 
             id="lottie-player"
             src="https://lottie.host/c03c86ca-5f41-494d-8c97-bd6d12c3021a/PW5Nk8aQt7.json" 
             background="transparent" 
             speed="1" 
-            loop="false" 
             autoplay>
         </lottie-player>
-    </div>
-
-    <footer class="footer-container">
-        <img class="mini-logo" src="images/design-title.png" alt="mini logo">
-        <div class="socials">
-            <a target="_blank" class="fab fa-facebook"></a>
-            <a target="_blank" class="fab fa-twitter"></a>
-            <a target="_blank" class="fab fa-instagram"></a>
-            <a target="_blank" class="fab fa-youtube"></a>
         </div>
-    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const userId = localStorage.getItem('userId');
-            let userPoints = 0;
-            const totalPrice = parseFloat(localStorage.getItem('totalPrice') || 0);
-            let currentDiscount = 0;
-
-
-            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
-            document.getElementById('earned-points').textContent = Math.floor(totalPrice);
-
- 
-            try {
-                const response = await fetch(`https://revolv-096e.restdb.io/rest/user-data/${userId}`, {
-                    headers: { 'x-apikey': '67a5f498f59921112448b97c' }
-                });
-                const user = await response.json();
-                userPoints = user.points;
-                document.getElementById('user-points').textContent = userPoints;
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-
-  
-            document.querySelectorAll('.apply-discount').forEach(button => {
-                button.addEventListener('click', () => {
-                    const discount = parseFloat(button.dataset.discount);
-                    const pointsNeeded = parseInt(button.dataset.points);
-
-                    if (userPoints >= pointsNeeded) {
-                        userPoints -= pointsNeeded;
-                        currentDiscount = discount;
-                        updateDisplay();
-                    } else {
-                        alert('Not enough points for this discount.');
-                    }
-                });
-            });
+        <footer class="footer-container">
+            <img class="mini-logo" src="images/design-title.png" alt="mini logo">
+            <div class="socials">
+                <a target="_blank" class="fab fa-facebook"></a>
+                <a target="_blank" class="fab fa-twitter"></a>
+                <a target="_blank" class="fab fa-instagram"></a>
+                <a target="_blank" class="fab fa-youtube"></a>
+            </div>
+        </footer>
 
 
-            document.getElementById('place-order').addEventListener('click', async () => {
-                const animation = document.getElementById('lottie-animation');
-                const player = document.getElementById('lottie-player');
+        <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+                const userId = localStorage.getItem('userId');
+                let userPoints = 0;
+                const totalPrice = parseFloat(localStorage.getItem('totalPrice') || 0);
+                let currentDiscount = 0;
+                let previousDiscountButton = null;
 
-                animation.style.display = 'block';
-                player.play();
+                document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+                document.getElementById('earned-points').textContent = Math.floor(totalPrice);
 
-                const finalPoints = userPoints + Math.floor(totalPrice);
 
                 try {
-                    await fetch(`https://revolv-096e.restdb.io/rest/user-data/${userId}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'x-apikey': '67a5f498f59921112448b97c'
-                        },
-                        body: JSON.stringify({ points: finalPoints })
+                    const response = await fetch(`https://revolv-096e.restdb.io/rest/user-data/${userId}`, {
+                        headers: { 'x-apikey': '67a5f498f59921112448b97c' }
                     });
+                    const user = await response.json();
+                    userPoints = user.points;
+                    document.getElementById('user-points').textContent = userPoints;
                 } catch (error) {
-                    console.error('Error updating points:', error);
+                    console.error('Error fetching user data:', error);
                 }
 
-                player.addEventListener('complete', redirectToHome);
-                setTimeout(redirectToHome, 5000);
 
-                function redirectToHome() {
-                    animation.style.display = 'none';
-                    window.location.href = 'index-login.html';
+                document.querySelectorAll('.apply-discount').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const discount = parseFloat(button.dataset.discount);
+                        const pointsNeeded = parseInt(button.dataset.points);
+
+
+                        if (previousDiscountButton && previousDiscountButton !== button) {
+                            previousDiscountButton.disabled = false; 
+                            userPoints += parseInt(previousDiscountButton.dataset.points); 
+                        }
+
+                        if (userPoints >= pointsNeeded) {
+                            userPoints -= pointsNeeded;
+                            currentDiscount = discount;
+                            previousDiscountButton = button;
+                            button.disabled = true; 
+                            updateDisplay();
+                        } else {
+                            alert('Not enough points for this discount.');
+                        }
+                    });
+                });
+
+
+                document.getElementById('place-order').addEventListener('click', async () => {
+                    const animation = document.getElementById('lottie-animation');
+                    const player = document.getElementById('lottie-player');
+
+                    animation.style.display = 'block';
+                    player.play();
+
+                    const finalPoints = userPoints + Math.floor(totalPrice);
+                    try {
+                        await fetch(`https://revolv-096e.restdb.io/rest/user-data/${userId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'x-apikey': '67a5f498f59921112448b97c'
+                            },
+                            body: JSON.stringify({ points: finalPoints })
+                        });
+                    } catch (error) {
+                        console.error('Error updating points:', error);
+                    }
+
+                    player.addEventListener('complete', () => {
+                        animation.style.display = 'none';
+                        setTimeout(() => {
+                            window.location.href = 'index-login.html';
+                        }, 500); 
+                    });
+
+
+                    player.addEventListener('complete', () => {
+                        player.stop();
+                    });
+                });
+
+
+                function updateDisplay() {
+                    document.getElementById('user-points').textContent = userPoints;
+                    document.getElementById('total-price').textContent = (totalPrice * (1 - currentDiscount)).toFixed(2);
                 }
             });
-
-            function updateDisplay() {
-                document.getElementById('user-points').textContent = userPoints;
-                document.getElementById('total-price').textContent = (totalPrice * (1 - currentDiscount)).toFixed(2);
-            }
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
+

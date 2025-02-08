@@ -35,7 +35,7 @@
         </div>
         <div class="homepage-container">
             <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">
-            <div class="fan-favourites">Fan Favourites! Click to buy!</div>
+            <div class="fan-favourites">Fan Favourites! Click to view!</div>
             <div class="carousel-container">
                 <button class="carousel-button left"><i class="fas fa-chevron-left"></i></button>
                 <div class="carousel">
@@ -57,13 +57,56 @@
                 </div>
                 <button class="carousel-button right"><i class="fas fa-chevron-right"></i></button>
             </div>
-            <div class="about-us-container">
-                <div class="about-us-text">
-                    Welcome to Revolv! Where we are passionate about reviving the timeless magic of vinyl records and turntables.
-                    <br> We offer both vinyl records and turntables, offering both classic and modern releases for both veterans and newcomers!
-                    <br>Our mission is to bring back the rich sound and nostalgic experience of vinyl, while introducing it to a new generation.
-                    <br>Whether you're a seasoned collector or just discovering the warmth of analog music, we're here to help you discover the joy of vinyl.
+
+            <div class="fan-favourites">Turntable of the Week! Click to view!</div>
+            <div class="crosley-carousel-container">
+                <button class="carousel-button left"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel">
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=stave"><img src="images/crosley-angle.png"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=stave"><img src="images/crosley-front.png"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=stave"><img src="images/crosley-side.png"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=stave"><img src="images/crosley-back.png"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=stave"><img src="images/crosley-top.png"></a>
+                    </div>
                 </div>
+                <button class="carousel-button right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <div class="fan-favourites">Limited Time Offer! While Stocks Last!</div>
+            <div class="hmv-carousel-container">
+                <button class="carousel-button left"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel">
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-angle.jpeg"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-front.jpeg"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-side.jpeg"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-back.jpeg"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-top.jpeg"></a>
+                    </div>
+                </div>
+                <button class="carousel-button right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+
+            <div class="about-us-container">
+                <img src="images/about-us.png" alt="About Us" class="about-us-image">
             </div>
         </div>
         <footer class="footer-container">
@@ -77,25 +120,31 @@
         </footer>
 
         <script>
-            const carousel = document.querySelector('.carousel');
-            const leftButton = document.querySelector('.carousel-button.left');
-            const rightButton = document.querySelector('.carousel-button.right');
-    
-            let currentIndex = 0;
-    
-            leftButton.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-                }
+            const carouselContainers = document.querySelectorAll('.carousel-container, .crosley-carousel-container, .hmv-carousel-container');
+
+            carouselContainers.forEach(container => {
+                const carousel = container.querySelector('.carousel');
+                const leftButton = container.querySelector('.carousel-button.left');
+                const rightButton = container.querySelector('.carousel-button.right');
+
+                let currentIndex = 0;
+
+                leftButton.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    }
+                });
+
+                rightButton.addEventListener('click', () => {
+                    if (currentIndex < carousel.children.length - 1) {
+                        currentIndex++;
+                        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    }
+                });
             });
-    
-            rightButton.addEventListener('click', () => {
-                if (currentIndex < carousel.children.length - 1) {
-                    currentIndex++;
-                    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-                }
-            });
+
+            
         </script>
 
     </body>
