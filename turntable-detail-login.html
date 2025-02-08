@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset ="UTF-8">
+        <title>Revolv</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <a href="index-login.html">    
+                <img class="logo" src="images/site-logo.png" alt="site logo">
+            </a>
+            <div class="navbar">
+                <a href="vinyl-collection-login.html">Vinyl Records</a>
+                <a href="turntable-collection-login.html">Turntables</a>
+                <div class="icons">
+                    <div class="cart-button">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="view-login-cart-overlay">
+                            <a href="cart-login.html" class="view-login-cart-overlay-btn">View Cart</a>
+                        </div>
+                    </div>
+                    <div class="account-button">
+                        <i class="fas fa-user"></i> Account
+                        <div class="overlay">
+                            <div class="user-points">Points: <span id="userPoints">0</span></div>
+                            <a href="index.html" class="logout-button">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lottie-animation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+            <lottie-player 
+                id="lottie-player"
+                src="https://lottie.host/5e831e3a-39d2-451b-85a7-07894276cddc/vtPxQ0el5Z.json" 
+                background="transparent" 
+                speed="1" 
+                loop="false" 
+                autoplay>
+            </lottie-player>
+        </div>
+
+        <div class="album-container">
+            <div class="album-left">
+                <img id="album-cover" src="" alt="Album Cover" class="album-cover">
+            </div>
+            <div class="album-right">
+                <h1 id="album-title">Album Title</h1>
+                <h2 id="album-artist">Artist: Artist Name</h2>
+                <p id="album-description" class="description">Description</p>
+                <h3 id="album-price">Price: $0.00</h3>
+                <button id="add-to-cart-final" class="add-to-cart-final">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="spotify-container">
+            <div id="spotify-embed"></div>
+        </div>
+
+
+        <footer class="footer-container">
+            <img class="mini-logo" src="images/design-title.png" alt="mini logo">
+            <div class="socials">
+                <a target="_blank" class="fab fa-facebook"></a>
+                <a target="_blank" class="fab fa-twitter"></a>
+                <a target="_blank" class="fab fa-instagram"></a>
+                <a target="_blank" class="fab fa-youtube"></a>
+            </div>
+        </footer>
+
+
+        <script>
+            const albums = {
+                "stave": {
+                    "cover": "images/crosley-angle.png",
+                    "title": "Stave Record Player",
+                    "artist": "Crosley",
+                    "genre": "Crosley",
+                    "description": "The Crosley Stave Record Player blends vintage charm with modern functionality. Its sleek, minimalist design features high-quality wood construction, built-in Bluetooth, and dynamic full-range stereo speakers. Perfect for vinyl enthusiasts, it delivers rich, warm sound, making it an elegant centerpiece for any music lover's collection.",
+                    "price": "$295.00",
+                   
+                },
+                "ksg": {
+                    "cover": "images/HMV-angle.jpeg",
+                    "title": "HMV Antique Player",
+                    "artist": "His Master's Voice",
+                    "genre": "HMV",
+                    "description": "The His Master's Voice Antique Record Player exudes timeless elegance with its iconic gramophone horn and vintage craftsmanship. Designed for classic vinyl lovers, it delivers rich, authentic sound. Its antique finish and historical charm make it a stunning centerpiece, blending nostalgia with a unique auditory experience.",
+                    "price": "$1235.00",
+                    
+                },
+
+            };
+    
+
+            function getAlbumIdFromUrl() {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('id');
+            }
+    
+
+            function loadAlbumDetails(albumId) {
+                const album = albums[albumId];
+                if (album) {
+                    document.getElementById('album-cover').src = album.cover;
+                    document.getElementById('album-title').textContent = album.title;
+                    document.getElementById('album-artist').textContent = `Artist: ${album.artist}`;
+                    document.getElementById('album-description').textContent = album.description;
+                    document.getElementById('album-price').textContent = `Price: ${album.price}`;
+                }
+            }
+    
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const albumId = getAlbumIdFromUrl();
+                loadAlbumDetails(albumId);
+
+                const userPoints = localStorage.getItem('userPoints') || 0;
+                document.getElementById('userPoints').textContent = userPoints;
+            });
+            
+            document.querySelector('.logout-button').addEventListener('click', () => {
+                localStorage.removeItem('user'); 
+                window.location.href = 'index.html'; 
+            });
+
+            document.getElementById('add-to-cart-final').addEventListener('click', function() {
+
+                const animation = document.getElementById('lottie-animation');
+                animation.style.display = 'block';
+
+                const albumId = getAlbumIdFromUrl();
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (!cart.includes(albumId)) {
+                    cart.push(albumId);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
+
+                setTimeout(() => {
+                    animation.style.display = 'none';
+                }, 2000);  
+            });
+
+
+        </script>
+
+    </body>
+</html>

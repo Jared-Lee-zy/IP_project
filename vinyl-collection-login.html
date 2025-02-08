@@ -12,8 +12,8 @@
                 <img class="logo" src="images/site-logo.png" alt="site logo">
             </a>
             <div class="navbar">
-                <a href="index-logged-in.html">Home</a>
-                <a href="turntable-logged-in.html">Turntables</a>
+                <a href="index-collection-login.html">Vinyls Records</a>
+                <a href="turntable-collection-login.html">Turntables</a>
                 <div class="icons">
                     <div class="cart-button">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -145,54 +145,38 @@
                 const filterCheckboxes = document.querySelectorAll('.filter input[type="checkbox"]');
                 const vinylItems = document.querySelectorAll('.vinyl-item');
                 const searchBar = document.querySelector('.search-bar input');
-    
+        
                 const filterVinyls = () => {
                     const selectedGenres = Array.from(filterCheckboxes)
                         .filter(checkbox => checkbox.checked)
                         .map(checkbox => checkbox.value);
                     const searchText = searchBar.value.toLowerCase();
-    
+        
                     vinylItems.forEach(item => {
                         const name = item.querySelector('h2').textContent.toLowerCase();
                         const itemGenre = item.getAttribute('data-genre');
                         const matchesGenre = !selectedGenres.length || selectedGenres.includes(itemGenre);
                         const matchesSearch = name.includes(searchText);
-    
+        
                         item.style.display = matchesGenre && matchesSearch ? 'block' : 'none';
                     });
                 };
-    
+        
                 filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterVinyls));
                 searchBar.addEventListener('input', filterVinyls);
-            });
+        
 
+                const userPoints = localStorage.getItem('userPoints') || 0;
+                document.getElementById('userPoints').textContent = userPoints;
+            });
+        
             document.querySelector('.logout-button').addEventListener('click', () => {
-
                 localStorage.removeItem('user');
-
-
-                window.location.href = 'index.html'; 
+                localStorage.removeItem('userPoints'); 
+                window.location.href = 'index.html';
             });
-
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (user && user.email) {
-                fetch('https://revolv-096e.restdb.io/rest/user-data?q={"email":"' + user.email + '"}', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-apikey': '67a5f498f59921112448b97c',
-                        'cache-control': 'no-cache'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length > 0) {
-                        document.getElementById('userPoints').textContent = data[0].points || 0;
-                    }
-                })
-                .catch(error => console.error('Error fetching user data:', error));
-            }
         </script>
+        
 
 
     </body>

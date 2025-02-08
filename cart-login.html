@@ -13,7 +13,7 @@
             </a>
             <div class="navbar">
                 <a href="vinyl-collection-login.html">Vinyl Records</a>
-                <a href="turntable-login.html">Turntables</a>
+                <a href="turntable-collection-login.html">Turntables</a>
                 <div class="icons">
                     <div class="cart-button">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -62,7 +62,9 @@
             const albums = {
                 "tpab": { "cover": "images/tpab.jpg", "title": "To Pimp A Butterfly", "price": 46.00 },
                 "ksg": { "cover": "images/kids-see-ghost.jpg", "title": "Kids See Ghost", "price": 38.00 },
-                "24k": { "cover": "images/24k-magic.jpg", "title": "24K Magic", "price": 37.00 }
+                "24k": { "cover": "images/24k-magic.jpg", "title": "24K Magic", "price": 37.00 },
+                "stave": { "cover": "images/crosley-angle.png", "title": "Stave Record Player", "price": 295.00 },
+                "hmv": { "cover": "images/HMV-angle.jpeg", "title": "HMV Antique Player", "price": 1235.00 }
             };
 
             function loadCart() {
@@ -128,25 +130,14 @@
                 });
             });
 
+                const userPoints = localStorage.getItem('userPoints') || 0;
+                document.getElementById('userPoints').textContent = userPoints;
 
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (user && user.email) {
-                fetch('https://revolv-096e.restdb.io/rest/user-data?q={"email":"' + user.email + '"}', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-apikey': '67a5f498f59921112448b97c',
-                        'cache-control': 'no-cache'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length > 0) {
-                        document.getElementById('userPoints').textContent = data[0].points || 0;
-                    }
-                })
-                .catch(error => console.error('Error fetching user data:', error));
-            }
+                document.querySelector('.logout-button').addEventListener('click', () => {
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('points');
+                    window.location.href = 'index.html';
+                });
 
         </script>
 
