@@ -5,6 +5,12 @@ REVOLV
 
 This project is to make a brand called "Revolv" that sells vinyl records and turntables. We made a mobile app, a website and also use Maya to 3D model the turntables to use as the images in our website. In the mobile app we alsoto gamified it. Our goal is to bring back the timeless magic of vinyls and listening to music on vinyls, because in this day and age most people use apps like Spotify or Apple music to listen to music but its just not the same as listening through vinyl. So we wanted to bring back nostalgic feel of vinyl music to the new generation.
 
+Distribution of work
+
+Jared Lee - ID website
+
+Conan Lim - AD website
+
 Design Process
 
 The design process in making the website was to make it easy to use and read. The website is for mainly for adults but also teens can use it. The users want to buy vinyls and turntables and this website is the best way for them to achieve it as it is easy and fast to use.
