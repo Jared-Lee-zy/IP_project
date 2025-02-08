@@ -1378,7 +1378,7 @@ button[type="submit"]:hover {
     .signup-center .form-group label {
         display: block;
         margin-bottom: 4px;
-        margin-right: 10px; /* Added horizontal margin */
+        margin-right: 10px; 
     }
 
     .signup-center .form-group input {
