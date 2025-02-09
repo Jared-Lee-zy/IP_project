@@ -11,6 +11,8 @@ Jared Lee - ID website
 
 Conan Lim - AD website
 
+Github link - https://github.com/Jared-Lee-zy/IP_project
+
 Design Process
 
 The design process in making the website was to make it easy to use and read. The website is for mainly for adults but also teens can use it. The users want to buy vinyls and turntables and this website is the best way for them to achieve it as it is easy and fast to use.
@@ -69,6 +71,9 @@ https://mungfali.com/explore/Travis-Scott-Rodeo-Album-Cover
 https://www.xxlmag.com/kendrick-lamar-releases-cover-art-new-album-pimp-butterfly/
 https://www.pinterest.com/pin/we-dont-trust-you-in-2024--665688388698259993/
 https://asfaltshop.pl/product/11217-kanye-west-ye-lp
+https://www.thecrimson.com/article/2021/12/31/an-evening-with-silk-sonic-album-review/
+https://flickr.com/photos/x1brett/5549851787
+https://genius.com/albums/The-weeknd/Dawn-fm
 
 Turntables:
 

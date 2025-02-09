@@ -1074,7 +1074,7 @@ button[type="submit"]:hover {
 }
 
 #place-order:hover {
-    background-color: #43a047;
+    background-color: green;
     transform: scale(1.05);
 }
 
@@ -1083,10 +1083,13 @@ button[type="submit"]:hover {
     font-weight: bold;
     margin: 10px 0;
     color: #333;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .points-price span {
-    color: #ff6f61;
+    color: salmon;
     font-size: 22px;
 }
 

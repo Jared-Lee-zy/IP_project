@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> <!--Header same as index-login.html-->
     <meta charset="UTF-8">
     <title>Revolv - Discounts</title>
     <link rel="stylesheet" href="style.css">
@@ -35,29 +35,29 @@
 
         <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">
 
-        <div class="discount-container">
+        <div class="discount-container"> <!--Discount container-->
             <h1>Discounts</h1>
             <div class="discount-options">
-                <div class="discount">
+                <div class="discount"> <!--Discount option for 10% discount-->
                     <img src="images/revolv_10percent.jpeg" alt="10% Discount">
                     <button class="apply-discount" data-discount="0.10" data-points="100">Apply 10% Discount (100 points)</button>
                 </div>
-                <div class="discount">
+                <div class="discount"> <!--Discount option for 20% discount-->
                     <img src="images/revolv_20percent.jpeg" alt="20% Discount">
                     <button class="apply-discount" data-discount="0.20" data-points="180">Apply 20% Discount (180 points)</button>
                 </div>
-                <div class="discount">
+                <div class="discount"> <!--Discount option for 30% discount-->
                     <img src="images/revolv_30percent.jpeg" alt="30% Discount">
                     <button class="apply-discount" data-discount="0.30" data-points="250">Apply 30% Discount (250 points)</button>
                 </div>
             </div>
 
-            <p class="points-price">Points: <span id="user-points">0</span></p>
+            <p class="points-price">Points: <span id="user-points">0</span></p> <!--Display users points, total price and points earned-->
             <p class="points-price">Total Price: $<span id="total-price">0.00</span></p>
             <p class="points-price">Amount of Points Earned: <span id="earned-points">0</span></p>
             <button id="place-order">Place Order</button>
         </div>
-
+            <!--Display lottie animation for order confirmation-->
         <div id="lottie-animation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
             <lottie-player 
             id="lottie-player"
@@ -81,45 +81,45 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', async () => {
-                const userId = localStorage.getItem('userId');
-                let userPoints = 0;
-                const totalPrice = parseFloat(localStorage.getItem('totalPrice') || 0);
-                let currentDiscount = 0;
+                const userId = localStorage.getItem('userId'); // Gets the users id
+                let userPoints = 0; // Initialize user id
+                const totalPrice = parseFloat(localStorage.getItem('totalPrice') || 0); // Retrieve total price from local storage
+                let currentDiscount = 0; // Variable to track current discount applied
                 let previousDiscountButton = null;
 
-                document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+                document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Display total price and earned points
                 document.getElementById('earned-points').textContent = Math.floor(totalPrice);
 
 
-                try {
+                try { // Fetch user points from RestDB
                     const response = await fetch(`https://revolv-096e.restdb.io/rest/user-data/${userId}`, {
                         headers: { 'x-apikey': '67a5f498f59921112448b97c' }
                     });
                     const user = await response.json();
                     userPoints = user.points;
-                    document.getElementById('user-points').textContent = userPoints;
+                    document.getElementById('user-points').textContent = userPoints; // Display user points
                 } catch (error) {
                     console.error('Error fetching user data:', error);
                 }
 
 
-                document.querySelectorAll('.apply-discount').forEach(button => {
+                document.querySelectorAll('.apply-discount').forEach(button => { // Apply discount logic
                     button.addEventListener('click', () => {
-                        const discount = parseFloat(button.dataset.discount);
-                        const pointsNeeded = parseInt(button.dataset.points);
+                        const discount = parseFloat(button.dataset.discount); // Get discount percentage
+                        const pointsNeeded = parseInt(button.dataset.points); // Get required points for discount
 
 
-                        if (previousDiscountButton && previousDiscountButton !== button) {
+                        if (previousDiscountButton && previousDiscountButton !== button) { // Restore the users points if they switch discounts
                             previousDiscountButton.disabled = false; 
                             userPoints += parseInt(previousDiscountButton.dataset.points); 
                         }
 
                         if (userPoints >= pointsNeeded) {
-                            userPoints -= pointsNeeded;
-                            currentDiscount = discount;
-                            previousDiscountButton = button;
-                            button.disabled = true; 
-                            updateDisplay();
+                            userPoints -= pointsNeeded; // Deduct points for discount
+                            currentDiscount = discount; // Apply new discount
+                            previousDiscountButton = button; // Track the current discount button
+                            button.disabled = true;  // Disables the button after the user selects it
+                            updateDisplay(); // Updates the values
                         } else {
                             alert('Not enough points for this discount.');
                         }
@@ -127,42 +127,42 @@
                 });
 
 
-                document.getElementById('place-order').addEventListener('click', async () => {
+                document.getElementById('place-order').addEventListener('click', async () => { // Event listener for the place order button
                     const animation = document.getElementById('lottie-animation');
                     const player = document.getElementById('lottie-player');
 
-                    animation.style.display = 'block';
+                    animation.style.display = 'block'; // Displays lottie animation
                     player.play();
 
-                    const finalPoints = userPoints + Math.floor(totalPrice);
+                    const finalPoints = userPoints + Math.floor(totalPrice); // Calculates final points after the order is placed
                     try {
-                        await fetch(`https://revolv-096e.restdb.io/rest/user-data/${userId}`, {
+                        await fetch(`https://revolv-096e.restdb.io/rest/user-data/${userId}`, { // Updates the user points in the RestDB database
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'x-apikey': '67a5f498f59921112448b97c'
                             },
-                            body: JSON.stringify({ points: finalPoints })
+                            body: JSON.stringify({ points: finalPoints }) //Update points
                         });
                     } catch (error) {
                         console.error('Error updating points:', error);
                     }
 
-                    player.addEventListener('complete', () => {
+                    player.addEventListener('complete', () => { // Hides the animation when it completes
                         animation.style.display = 'none';
                         setTimeout(() => {
-                            window.location.href = 'index-login.html';
+                            window.location.href = 'index-login.html'; // Redirects the user to index-login.html
                         }, 500); 
                     });
 
 
-                    player.addEventListener('complete', () => {
-                        player.stop();
+                    player.addEventListener('complete', () => { // Stops the animation after its complete
+                        player.stop(); 
                     });
                 });
 
 
-                function updateDisplay() {
+                function updateDisplay() { // Updates the user points and total price
                     document.getElementById('user-points').textContent = userPoints;
                     document.getElementById('total-price').textContent = (totalPrice * (1 - currentDiscount)).toFixed(2);
                 }

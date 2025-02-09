@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head> <!--Header same as index-login.html page-->
         <meta charset="UTF-8">
         <title>Revolv</title>
         <link rel="stylesheet" href="style.css">
@@ -35,12 +35,12 @@
         <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">   
 
    
-        <div class="checkout-container">
+        <div class="checkout-container"> <!--Checkout form container-->
             <main>
                 <h1>Checkout</h1>
-                <form id="checkout-form">
+                <form id="checkout-form"> <!--Checkout form-->
 
-                    <div class="input-container">
+                    <div class="input-container"> <!--Personal information section-->
                         <personal>
                             <legend>Personal Information</legend>
                             <label for="first-name">First Name:</label>
@@ -51,7 +51,7 @@
                         </personal>
                     </div>
 
-                    <div class="input-container">
+                    <div class="input-container"> <!--Shipping address section-->
                         <shipping>
                             <legend>Shipping Address</legend>
                             <label for="address">Address:</label>
@@ -68,7 +68,7 @@
                         </shipping>
                     </div>
 
-                    <div class="input-container">
+                    <div class="input-container"> <!--IPayment information section-->
                         <payment>
                             <legend>Payment Information</legend>
                             <label for="credit-card-number">Credit Card Number:</label>
@@ -82,9 +82,9 @@
                         </payment>
                     </div>
 
-                    <h2>Total Price: <span id="total-price-checkout">0.00</span></h2>
+                    <h2>Total Price: <span id="total-price-checkout">0.00</span></h2> <!--Display total price taken from checkout-login.html-->
 
-                    <div class="go-to-discount">
+                    <div class="go-to-discount"> <!--Button to apply discount-->
                         <button type="submit" onclick="window.location.href = 'discounts.html'">Apply Discount</button>
                     </div>
                 </form>
@@ -103,14 +103,14 @@
 
         <script>
 
-            var totalPrice = parseFloat(localStorage.getItem('totalPrice'));
+            var totalPrice = parseFloat(localStorage.getItem('totalPrice')); //Retrieve total price from local storage to display it
 
 
             if (!isNaN(totalPrice)) {
                 document.getElementById('total-price-checkout').textContent = `$${totalPrice.toFixed(2)}`;
             }
 
-            const user = JSON.parse(localStorage.getItem('user'));
+            const user = JSON.parse(localStorage.getItem('user')); //Retrieve user points from RestDB to display
             if (user && user.email) {
                 fetch('https://revolv-096e.restdb.io/rest/user-data?q={"email":"' + user.email + '"}', {
                     method: 'GET',
@@ -122,7 +122,7 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.length > 0) {
+                    if (data.length > 0) { // Display user points
                         document.getElementById('userPoints').textContent = data[0].points || 0;
                     }
                 })

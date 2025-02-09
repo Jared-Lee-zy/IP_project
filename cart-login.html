@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head> <!--Header same as index.login.html page-->
         <meta charset="UTF-8">
         <title>Revolv</title>
         <link rel="stylesheet" href="style.css">
@@ -34,12 +34,12 @@
 
         <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">   
 
-        <div class="cart-page">
-            <div class="cart-container">
+        <div class="cart-page"> <!--Cart page container-->
+            <div class="cart-container"> <!--Displays the cart items dynamically-->
                 <h1>Your Cart</h1>
                 <div id="cart-items"></div>
             </div>
-            <div class="checkout-button">
+            <div class="checkout-button"> <!--Checkout button that redirects user to checkout-login.html-->
                 <h2>Total Price: $<span id="total-price">0.00</span></h2>
                 <button id="checkout-button" onclick="window.location.href='checkout-login.html'">Proceed to Checkout</button>
             </div>
@@ -59,7 +59,7 @@
         </footer>
 
         <script>
-            const albums = {
+            const albums = { // Stores albums and turntables details as objects
                 "tpab": { "cover": "images/tpab.jpg", "title": "To Pimp A Butterfly", "price": 46.00 },
                 "ksg": { "cover": "images/kids-see-ghost.jpg", "title": "Kids See Ghost", "price": 38.00 },
                 "24k": { "cover": "images/24k-magic.jpg", "title": "24K Magic", "price": 37.00 },
@@ -71,6 +71,9 @@
                 "jukebox": { "cover": "images/jukebox.jpg", "title": "Unorthodox Jukebox", "price": 34.00 },
                 "mad": { "cover": "images/madvillainy.jpg", "title": "Madvillainy", "price": 46.00 },
                 "trust": { "cover": "images/trust-you.jpg", "title": "We Don't Trust You", "price": 58.00 },
+                "silk": { "cover": "images/silk.jpg", "title": "An Evening with Silk Sonic", "price": 48.00 },
+                "queen": { "cover": "images/queen.jpg", "title": "Greatest Hits II", "price": 58.00 },
+                "dawn": { "cover": "images/dawn.jpg", "title": "Dawn FM", "price": 56.00 },
                 "stave": { "cover": "images/crosley-angle.png", "title": "Stave Record Player", "price": 295.00 },
                 "voice": { "cover": "images/HMV-angle.jpeg", "title": "HMV Antique Player", "price": 1235.00 },
                 "voyager": { "cover": "images/voyager-angle.png", "title": "Voyager Portable Turntable", "price": 135.00 },
@@ -79,17 +82,17 @@
 
             };
 
-            function loadCart() {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                let cartContainer = document.getElementById('cart-items');
-                let totalPrice = 0;
-                cartContainer.innerHTML = "";
+            function loadCart() { // Function to load the cart items from local storage
+                let cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve cart items from local storage
+                let cartContainer = document.getElementById('cart-items'); // Get container to display the items
+                let totalPrice = 0; // Initializes the total price
+                cartContainer.innerHTML = ""; // Clears the previous items
 
                 cart.forEach(albumId => {
-                    let album = albums[albumId];
+                    let album = albums[albumId]; // Get the album / turntable details using the ID
                     if (album) {
-                        let cartItem = document.createElement('div');
-                        cartItem.classList.add('cart-item');
+                        let cartItem = document.createElement('div'); // Create new div for the cart item
+                        cartItem.classList.add('cart-item'); // Add class for css styling
                         cartItem.innerHTML = `
                             <img src="${album.cover}" alt="${album.title}" class="cart-album-cover">
                             <div class="cart-album-details">
@@ -103,49 +106,49 @@
                                 <button class="remove-item" data-id="${albumId}">X</button>
                             </div>
                         `;
-                        cartContainer.appendChild(cartItem);
-                        totalPrice += album.price;
+                        cartContainer.appendChild(cartItem); // Add item to cart container
+                        totalPrice += album.price; // Update the total price
                     }
                 });
-                document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+                document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Display total price
             }
 
-            document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('DOMContentLoaded', () => { // Load cart items when the page loads
                 loadCart();
-                document.getElementById('cart-items').addEventListener('change', function(event) {
+                document.getElementById('cart-items').addEventListener('change', function(event) { // Update total price when the quantity changes
                     if (event.target.classList.contains('quantity')) {
                         let albumId = event.target.getAttribute('data-id');
                         let quantity = parseInt(event.target.value);
                         let price = albums[albumId].price;
                         let totalPriceElement = event.target.closest('.cart-album-details').querySelector('.total-price');
-                        totalPriceElement.textContent = (quantity * price).toFixed(2);
+                        totalPriceElement.textContent = (quantity * price).toFixed(2); // Updates the total price with quantity update
                         
                         let total = Array.from(document.querySelectorAll('.total-price')).reduce((sum, el) => sum + parseFloat(el.textContent), 0);
                         document.getElementById('total-price').textContent = total.toFixed(2);
                     }
                 });
 
-                document.getElementById('cart-items').addEventListener('click', function(event) {
+                document.getElementById('cart-items').addEventListener('click', function(event) { // Revomes the item from the cart
                     if (event.target.classList.contains('remove-item')) {
                         let albumId = event.target.getAttribute('data-id');
                         let cart = JSON.parse(localStorage.getItem('cart')) || [];
                         let updatedCart = cart.filter(id => id !== albumId);
-                        localStorage.setItem('cart', JSON.stringify(updatedCart));
+                        localStorage.setItem('cart', JSON.stringify(updatedCart)); // Saves the updated cart
                         loadCart();
                     }
                 });
 
-                document.getElementById('checkout-button').addEventListener('click', function() {
+                document.getElementById('checkout-button').addEventListener('click', function() { // Go to checkout and saves the total price
                     let totalPrice = parseFloat(document.getElementById('total-price').textContent);
                     localStorage.setItem('totalPrice', totalPrice.toFixed(2));
-                    window.location.href = 'checkout-login.html';
+                    window.location.href = 'checkout-login.html'; // Redirects the user to checkout-login.html page
                 });
             });
 
                 const userPoints = localStorage.getItem('userPoints') || 0;
-                document.getElementById('userPoints').textContent = userPoints;
+                document.getElementById('userPoints').textContent = userPoints; // Display user points for local storage
 
-                document.querySelector('.logout-button').addEventListener('click', () => {
+                document.querySelector('.logout-button').addEventListener('click', () => { // Logout button
                     localStorage.removeItem('user');
                     localStorage.removeItem('points');
                     window.location.href = 'index.html';

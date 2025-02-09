@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head> <!--Header same as index.html-->
         <meta charset ="UTF-8">
         <title>Revolv</title>
         <link rel="stylesheet" href="style.css">
@@ -36,13 +36,13 @@
     
     <div class="main-content">
 
-        <div class="search-bar">
+        <div class="search-bar"> <!--Search bar for vinyl records-->
             <input type="text" placeholder="Search for vinyls">
         </div>
 
         
         <div class="collection-container">
-            <div class="filter">
+            <div class="filter"> <!--Filter section for genres-->
                 <h2>Filter by Genre</h2>
                 <ul>
                     <li><label><input type="checkbox" value="hiphop"> Hip Hop</label></li>
@@ -53,10 +53,10 @@
                 </ul>
             </div>
             <div class="collection">
-                <h1>Vinyl Collection</h1>
+                <h1>Vinyl Collection</h1> <!--Vinyl collection grid-->
                 <div class="vinyl-grid">
  
-                    <div class="vinyl-item" data-genre="hiphop" data-id="tpab">
+                    <div class="vinyl-item" data-genre="hiphop" data-id="tpab"> <!--Vinyl items with their genre and ID attributes-->
                         <img src="images/tpab.jpg" alt="TPAB">
                         <h2>To Pimp A Butterfly - Kendrick Lamar</h2>
                         <p>$46.00</p>
@@ -122,7 +122,24 @@
                         <p>$50.00</p>
                         <a href="vinyl-detail.html?id=ye" class="view">View</a>
                     </div>
-
+                    <div class="vinyl-item" data-genre="pop" data-id="silk">
+                        <img src="images/silk.jpg" alt="Silk">
+                        <h2>An Evening with Silk Sonic - Bruno Mars & Anderson Paak</h2>
+                        <p>$48.00</p>
+                        <a href="vinyl-detail.html?id=silk" class="view">View</a>
+                    </div>
+                    <div class="vinyl-item" data-genre="rock" data-id="queen">
+                        <img src="images/queen.jpg" alt="queen">
+                        <h2>Greatest Hits II - Queens</h2>
+                        <p>$58.00</p>
+                        <a href="vinyl-detail.html?id=queen" class="view">View</a>
+                    </div>
+                    <div class="vinyl-item" data-genre="rnb" data-id="dawn">
+                        <img src="images/dawn.jpg" alt="dawn">
+                        <h2>Dawn FM - The Weeknd</h2>
+                        <p>$56.00</p>
+                        <a href="vinyl-detail.html?id=dawn" class="view">View</a>
+                    </div>
 
 
                 </div>
@@ -145,29 +162,29 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                const filterCheckboxes = document.querySelectorAll('.filter input[type="checkbox"]');
-                const vinylItems = document.querySelectorAll('.vinyl-item');
-                const searchBar = document.querySelector('.search-bar input');
+                const filterCheckboxes = document.querySelectorAll('.filter input[type="checkbox"]'); // Select filter checkboxes
+                const vinylItems = document.querySelectorAll('.vinyl-item'); // Select all vinyl items
+                const searchBar = document.querySelector('.search-bar input'); // Select search input
     
                 const filterVinyls = () => {
                     const selectedGenres = Array.from(filterCheckboxes)
-                        .filter(checkbox => checkbox.checked)
+                        .filter(checkbox => checkbox.checked) // Get checked genres
                         .map(checkbox => checkbox.value);
-                    const searchText = searchBar.value.toLowerCase();
+                    const searchText = searchBar.value.toLowerCase(); // Convert the search text into lowercase
     
                     vinylItems.forEach(item => {
-                        const name = item.querySelector('h2').textContent.toLowerCase();
-                        const itemGenre = item.getAttribute('data-genre');
-                        const matchesGenre = !selectedGenres.length || selectedGenres.includes(itemGenre);
-                        const matchesSearch = name.includes(searchText);
+                        const name = item.querySelector('h2').textContent.toLowerCase(); // Vinyl name
+                        const itemGenre = item.getAttribute('data-genre'); // Vinyl genre
+                        const matchesGenre = !selectedGenres.length || selectedGenres.includes(itemGenre); // Vinyl genre match check
+                        const matchesSearch = name.includes(searchText); // Vinyl search match check
     
-                        item.style.display = matchesGenre && matchesSearch ? 'block' : 'none';
+                        item.style.display = matchesGenre && matchesSearch ? 'block' : 'none'; // Shows/Hide the vinyl based on the genre and search
                     });
                 };
     
-                filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterVinyls));
-                searchBar.addEventListener('input', filterVinyls);
-            });
+                filterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterVinyls)); // Event listener for filter change
+                searchBar.addEventListener('input', filterVinyls); // Event listener for search input
+            }); 
         </script>
 
 

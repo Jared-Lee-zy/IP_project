@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head> <!--Header same as index-login.html page-->
         <meta charset ="UTF-8">
         <title>Revolv</title>
         <link rel="stylesheet" href="style.css">
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div id="lottie-animation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+        <div id="lottie-animation" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;"> <!--Container for the lottie animation-->
             <lottie-player 
                 id="lottie-player"
                 src="https://lottie.host/5e831e3a-39d2-451b-85a7-07894276cddc/vtPxQ0el5Z.json" 
@@ -41,7 +41,7 @@
                 speed="1" 
                 loop="false" 
                 autoplay>
-            </lottie-player>
+            </lottie-player> <!--Lottie player to play the animation-->
         </div>
 
         <div class="album-container">
@@ -186,6 +186,38 @@
                     "price": "$58.00",
                     "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/4iqbFIdGOTzXeDtt9owjQn' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
                 },
+                "silk": {
+                    "cover": "images/silk.jpg",
+                    "title": "An Evening with Silk Sonic",
+                    "artist": "Bruno Mars & Anderson Paak",
+                    "releaseDate": "2024",
+                    "genre": "Pop",
+                    "description": "Silk Sonic, a duo featuring Bruno Mars and Anderson .Paak, released their debut album An Evening with Silk Sonic on November 12, 2021. Blending soul, funk, and R&B, the album showcases smooth vocals and retro vibes, featuring hits like Leave the Door Open and Smokin Out the Window.",
+                    "price": "$48.00",
+                    "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/1YgekJJTEueWDaMr7BYqPk' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
+                },
+                "queen": {
+                    "cover": "images/queen.jpg",
+                    "title": "Greatest Hits II",
+                    "artist": "Queens",
+                    "releaseDate": "1991",
+                    "genre": "Rock",
+                    "description": "Queen's Greatest Hits II is a compilation album released on October 28, 1991. It features the band's iconic hits from 1981 to 1991, including Under Pressure, I Want to Break Free, and The Show Must Go On. The album showcases Queen's evolution in rock, pop, and synth-driven sounds.",
+                    "price": "$58.00",
+                    "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/6wlsUpq6NrapsweMIOKt0y' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
+                },
+                "dawn": {
+                    "cover": "images/dawn.jpg",
+                    "title": "Dawn FM",
+                    "artist": "The Weeknd",
+                    "releaseDate": "2022",
+                    "genre": "RNB",
+                    "description": "The Weeknd's Dawn FM is his fifth studio album, released on January 7, 2022. Blending synth-pop, R&B, and new wave, it features a futuristic, radio-inspired theme with hits like Take My Breath and Sacrifice. The album explores themes of reflection, mortality, and transcendence, narrated by Jim Carrey.",
+                    "price": "$56.00",
+                    "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/2nLOHgzXzwFEpl62zAgCEC' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
+                },
+
+                
             };
     
 
@@ -213,29 +245,29 @@
                 const albumId = getAlbumIdFromUrl();
                 loadAlbumDetails(albumId);
 
-                const userPoints = localStorage.getItem('userPoints') || 0;
-                document.getElementById('userPoints').textContent = userPoints;
+                const userPoints = localStorage.getItem('userPoints') || 0; // Retreive the user's points from local storage
+                document.getElementById('userPoints').textContent = userPoints; // Display user point on the page
             });
             
-            document.querySelector('.logout-button').addEventListener('click', () => {
-                localStorage.removeItem('user'); 
-                window.location.href = 'index.html'; 
+            document.querySelector('.logout-button').addEventListener('click', () => { // Event listener for the logout button
+                localStorage.removeItem('user');  // Clears the user's data from the local storage
+                window.location.href = 'index.html'; // Redirects the user to the index.html page
             });
 
-            document.getElementById('add-to-cart-final').addEventListener('click', function() {
+            document.getElementById('add-to-cart-final').addEventListener('click', function() { // Add to cart button function
 
-                const animation = document.getElementById('lottie-animation');
-                animation.style.display = 'block';
+                const animation = document.getElementById('lottie-animation'); // Get the lottie animation element
+                animation.style.display = 'block'; // Show the animation
 
-                const albumId = getAlbumIdFromUrl();
+                const albumId = getAlbumIdFromUrl(); // Get album ID from URL
 
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                if (!cart.includes(albumId)) {
-                    cart.push(albumId);
-                    localStorage.setItem('cart', JSON.stringify(cart));
+                let cart = JSON.parse(localStorage.getItem('cart')) || []; // Get the existing cart data or make an empty array
+                if (!cart.includes(albumId)) { // Check if the album is not in the cart
+                    cart.push(albumId);  // Add the album ID to the cart
+                    localStorage.setItem('cart', JSON.stringify(cart)); // Save the updated cart to the local storage
                 }
 
-                setTimeout(() => {
+                setTimeout(() => { // Hide the animation after 2 seconds
                     animation.style.display = 'none';
                 }, 2000);  
             });

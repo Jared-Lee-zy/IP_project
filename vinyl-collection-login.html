@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--Same as vinyl-collection.html except for header-->
 <html lang="en">
-    <head>
+    <head> 
         <meta charset="UTF-8">
         <title>Vinyl Collection</title>
         <link rel="stylesheet" href="style.css">
@@ -47,7 +47,7 @@
                         <li><label><input type="checkbox" value="pop"> Pop</label></li>
                         <li><label><input type="checkbox" value="rock"> Rock</label></li>
                         <li><label><input type="checkbox" value="rnb"> Rnb</label></li>
-                        <li><label><input type="checkbox" valye="jazz"> Jazz</label></li>
+                        <li><label><input type="checkbox" value="jazz"> Jazz</label></li>
                     </ul>
                 </div>
                 <div class="collection">
@@ -120,6 +120,24 @@
                             <p>$50.00</p>
                             <a href="vinyl-detail-login.html?id=ye" class="view">View</a>
                         </div>
+                        <div class="vinyl-item" data-genre="pop" data-id="silk">
+                            <img src="images/silk.jpg" alt="Silk">
+                            <h2>An Evening with Silk Sonic - Bruno Mars & Anderson Paak</h2>
+                            <p>$48.00</p>
+                            <a href="vinyl-detail-login.html?id=silk" class="view">View</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="rock" data-id="queen">
+                            <img src="images/queen.jpg" alt="queen">
+                            <h2>Greatest Hits II - Queens</h2>
+                            <p>$58.00</p>
+                            <a href="vinyl-detail-login.html?id=queen" class="view">View</a>
+                        </div>
+                        <div class="vinyl-item" data-genre="rnb" data-id="dawn">
+                            <img src="images/dawn.jpg" alt="dawn">
+                            <h2>Dawn FM - The Weeknd</h2>
+                            <p>$56.00</p>
+                            <a href="vinyl-detail-login.html?id=dawn" class="view">View</a>
+                        </div>
     
     
     
@@ -166,7 +184,7 @@
                 searchBar.addEventListener('input', filterVinyls);
         
 
-                const userPoints = localStorage.getItem('userPoints') || 0;
+                const userPoints = localStorage.getItem('userPoints') || 0; // Display the user points from the local storage
                 document.getElementById('userPoints').textContent = userPoints;
             });
         

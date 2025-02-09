@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head> <!--Header same as index.html-->
         <meta charset ="UTF-8">
         <title>Revolv</title>
         <link rel="stylesheet" href="style.css">
@@ -34,11 +34,11 @@
             </div>
         </div>
 
-        <div class="album-container">
+        <div class="album-container"> <!--Album detail container-->
             <div class="album-left">
-                <img id="album-cover" src="" alt="Album Cover" class="album-cover">
+                <img id="album-cover" src="" alt="Album Cover" class="album-cover"> <!--Placeholder for album cover-->
             </div>
-            <div class="album-right">
+            <div class="album-right"> <!--Album information-->
                 <h1 id="album-title">Album Title</h1>
                 <h2 id="album-artist">Artist: Artist Name</h2>
                 <p id="album-description" class="description">Description</p>
@@ -48,11 +48,11 @@
             </div>
         </div>
 
-        <div class="spotify-container">
+        <div class="spotify-container"> <!--Spotify embed-->
             <div id="spotify-embed"></div>
         </div>
 
-        <div id="login-overlay" class="login-overlay">
+        <div id="login-overlay" class="login-overlay"> <!--Login/signup prompt overlay-->
             <div class="login-overlay-content">
                 <p>You must login or sign up to add items to the cart.</p>
                 <a href="login.html" class="login-overlay-button">Login</a>
@@ -73,7 +73,7 @@
 
 
         <script>
-            const albums = {
+            const albums = { // Album details stored as objects
                 "tpab": {
                     "cover": "images/tpab.jpg",
                     "title": "To Pimp A Butterfly",
@@ -184,19 +184,49 @@
                     "price": "$58.00",
                     "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/4iqbFIdGOTzXeDtt9owjQn' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
                 },
+                "silk": {
+                    "cover": "images/silk.jpg",
+                    "title": "An Evening with Silk Sonic",
+                    "artist": "Bruno Mars & Anderson Paak",
+                    "releaseDate": "2024",
+                    "genre": "Pop",
+                    "description": "Silk Sonic, a duo featuring Bruno Mars and Anderson .Paak, released their debut album An Evening with Silk Sonic on November 12, 2021. Blending soul, funk, and R&B, the album showcases smooth vocals and retro vibes, featuring hits like Leave the Door Open and Smokin Out the Window.",
+                    "price": "$48.00",
+                    "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/1YgekJJTEueWDaMr7BYqPk' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
+                },
+                "queen": {
+                    "cover": "images/queen.jpg",
+                    "title": "Greatest Hits II",
+                    "artist": "Queens",
+                    "releaseDate": "1991",
+                    "genre": "Rock",
+                    "description": "Queen's Greatest Hits II is a compilation album released on October 28, 1991. It features the band's iconic hits from 1981 to 1991, including Under Pressure, I Want to Break Free, and The Show Must Go On. The album showcases Queen's evolution in rock, pop, and synth-driven sounds.",
+                    "price": "$58.00",
+                    "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/6wlsUpq6NrapsweMIOKt0y' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
+                },
+                "dawn": {
+                    "cover": "images/dawn.jpg",
+                    "title": "Dawn FM",
+                    "artist": "The Weeknd",
+                    "releaseDate": "2022",
+                    "genre": "RNB",
+                    "description": "The Weeknd's Dawn FM is his fifth studio album, released on January 7, 2022. Blending synth-pop, R&B, and new wave, it features a futuristic, radio-inspired theme with hits like Take My Breath and Sacrifice. The album explores themes of reflection, mortality, and transcendence, narrated by Jim Carrey.",
+                    "price": "$56.00",
+                    "spotifyEmbed": "<iframe src='https://open.spotify.com/embed/album/2nLOHgzXzwFEpl62zAgCEC' width='100%' height='380' frameBorder='0' allowtransparency='true' allow='encrypted-media'></iframe>"
+                },
                 
 
             };
 
 
 
-            function getAlbumIdFromUrl() {
-                const params = new URLSearchParams(window.location.search);
-                return params.get('id');
+            function getAlbumIdFromUrl() { // Get album ID from the URL
+                const params = new URLSearchParams(window.location.search); // parse query paramaters from the URL
+                return params.get('id'); // return value of the id
             }
     
 
-            function loadAlbumDetails(albumId) {
+            function loadAlbumDetails(albumId) { // Load and display the album details based on the id
                 const album = albums[albumId];
                 if (album) {
                     document.getElementById('album-cover').src = album.cover;
@@ -210,23 +240,23 @@
             }
     
 
-            document.addEventListener('DOMContentLoaded', () => {
-                const albumId = getAlbumIdFromUrl();
-                loadAlbumDetails(albumId);
+            document.addEventListener('DOMContentLoaded', () => { // Event listener to load album details after the page has been fully loaded
+                const albumId = getAlbumIdFromUrl(); // Get album ID from URL
+                loadAlbumDetails(albumId); // Load album details based on the id
             });
 
-            document.addEventListener('DOMContentLoaded', () => {
-                const addToCartButton = document.querySelector('.add-to-cart');
-                const overlay = document.getElementById('login-overlay');
+            document.addEventListener('DOMContentLoaded', () => { // Event listener for the add to cart button and login overlay
+                const addToCartButton = document.querySelector('.add-to-cart'); // Selects the add to cart button
+                const overlay = document.getElementById('login-overlay'); // Selects the login overlay
 
-                addToCartButton.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    overlay.style.display = 'flex';
+                addToCartButton.addEventListener('click', (event) => { // Event listener to show login overlay when the add to cart button is clicked
+                    event.preventDefault(); // prevent default button behaviour
+                    overlay.style.display = 'flex'; // Display the overlay
                 });
 
-                overlay.addEventListener('click', (event) => {
-                    if (event.target === overlay) {
-                        overlay.style.display = 'none';
+                overlay.addEventListener('click', (event) => { // Event listener to hide the overlay when clicking outside the login overlay
+                    if (event.target === overlay) { // Make sure the click was outside the login overlay
+                        overlay.style.display = 'none'; // Hide the overlay
                     }
                 });
             });

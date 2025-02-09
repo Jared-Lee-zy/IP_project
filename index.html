@@ -1,31 +1,31 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--Homepage-->
 <html lang="en">
     <head>
         <meta charset ="UTF-8">
-        <title>Revolv</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <title>Revolv</title>   <!-- Title -->
+        <link rel="stylesheet" href="style.css"> <!--Links the css style page-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Links social icons in footer -->
     </head>
     <body>
-        <div class="header">
-            <a href="index.html">    
+        <div class="header"> <!--Header-->
+            <a href="index.html">    <!--Logo acts as button to go to homepage--> 
                 <img class="logo" src="images/site-logo.png" alt="site logo">
             </a>
-            <div class="navbar">
-                <a href="vinyl-collection.html">Vinyl Records</a>
-                <a href="turntable-collection.html">Turntables</a>
-                <div class="icons">
-                    <div class="cart-button">
+            <div class="navbar"> <!--Navigation Bar-->
+                <a href="vinyl-collection.html">Vinyl Records</a> <!--Button to go to vinyl collection page-->
+                <a href="turntable-collection.html">Turntables</a> <!--Button to go to turntable collection page-->
+                <div class="icons"> <!--Container for cart and account icons-->
+                    <div class="cart-button"> <!--Cart Button-->
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <div class="view-login-cart-overlay">
+                        <div class="view-login-cart-overlay"> <!--Cart Overlay-->
                             <p>Login or Signup to View Cart</p>
                             <a href="login.html" class="view-login-cart-overlay-btn">Login</a>
                             <a href="signup.html" class="view-login-cart-overlay-btn">Signup</a>
                         </div>
                     </div>
-                    <div class="account-button">
+                    <div class="account-button"> <!--Account Button-->
                         <i class="fas fa-user"></i> Account
-                        <div class="overlay">
+                        <div class="overlay"> <!--Account Overlay-->
                             <a href="login.html">Login</a>
                             <a href="signup.html">Sign Up</a>
                         </div>
@@ -34,8 +34,8 @@
             </div>
         </div>
         <div class="homepage-container">
-            <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background">
-            <div class="fan-favourites">Fan Favourites! Click to view!</div>
+            <img class="homepage-background" src="images/homepage-background.jpg" alt="homepage background"> <!--Background image-->
+            <div class="fan-favourites">Fan Favourites! Click to view!</div> <!--Fan Favourite Carousel-->
             <div class="carousel-container">
                 <button class="carousel-button left"><i class="fas fa-chevron-left"></i></button>
                 <div class="carousel">
@@ -58,7 +58,7 @@
                 <button class="carousel-button right"><i class="fas fa-chevron-right"></i></button>
             </div>
 
-            <div class="fan-favourites">Turntable of the Week! Click to view!</div>
+            <div class="fan-favourites">Turntable of the Week! Click to view!</div> <!--Turntable Carousel-->
             <div class="crosley-carousel-container">
                 <button class="carousel-button left"><i class="fas fa-chevron-left"></i></button>
                 <div class="carousel">
@@ -81,35 +81,35 @@
                 <button class="carousel-button right"><i class="fas fa-chevron-right"></i></button>
             </div>
             
-            <div class="fan-favourites">Limited Time Offer! While Stocks Last!</div>
+            <div class="fan-favourites">Limited Time Offer! While Stocks Last!</div> <!--Limited Time Offer Carousel-->
             <div class="hmv-carousel-container">
                 <button class="carousel-button left"><i class="fas fa-chevron-left"></i></button>
                 <div class="carousel">
                     <div class="carousel-item">
-                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-angle.jpeg"></a>
+                        <a href="turntable-detail.html?id=voice"><img src="images/HMV-angle.jpeg"></a>
                     </div>
                     <div class="carousel-item">
-                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-front.jpeg"></a>
+                        <a href="turntable-detail.html?id=voice"><img src="images/HMV-front.jpeg"></a>
                     </div>
                     <div class="carousel-item">
-                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-side.jpeg"></a>
+                        <a href="turntable-detail.html?id=voice"><img src="images/HMV-side.jpeg"></a>
                     </div>
                     <div class="carousel-item">
-                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-back.jpeg"></a>
+                        <a href="turntable-detail.html?id=voice"><img src="images/HMV-back.jpeg"></a>
                     </div>
                     <div class="carousel-item">
-                        <a href="turntable-detail.html?id=hmv"><img src="images/HMV-top.jpeg"></a>
+                        <a href="turntable-detail.html?id=voice"><img src="images/HMV-top.jpeg"></a>
                     </div>
                 </div>
                 <button class="carousel-button right"><i class="fas fa-chevron-right"></i></button>
             </div>
 
 
-            <div class="about-us-container">
+            <div class="about-us-container"> <!--Abous Us-->
                 <img src="images/about-us.png" alt="About Us" class="about-us-image">
             </div>
         </div>
-        <footer class="footer-container">
+        <footer class="footer-container"> <!--Footer-->
             <img class="mini-logo" src="images/design-title.png" alt="mini logo">
             <div class="socials">
                 <a target="_blank" class="fab fa-facebook"></a>
@@ -120,26 +120,26 @@
         </footer>
 
         <script>
-            const carouselContainers = document.querySelectorAll('.carousel-container, .crosley-carousel-container, .hmv-carousel-container');
+            const carouselContainers = document.querySelectorAll('.carousel-container, .crosley-carousel-container, .hmv-carousel-container'); // Seclects all three carousels
 
-            carouselContainers.forEach(container => {
-                const carousel = container.querySelector('.carousel');
-                const leftButton = container.querySelector('.carousel-button.left');
-                const rightButton = container.querySelector('.carousel-button.right');
+            carouselContainers.forEach(container => { // Adds the functionality for all the carousels
+                const carousel = container.querySelector('.carousel'); // Selects the carousel in the container
+                const leftButton = container.querySelector('.carousel-button.left'); // Selects the left button
+                const rightButton = container.querySelector('.carousel-button.right'); // Selects the right button
 
-                let currentIndex = 0;
+                let currentIndex = 0; // Tracks the index for the current slide
 
-                leftButton.addEventListener('click', () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                leftButton.addEventListener('click', () => { // Event listener for left button
+                    if (currentIndex > 0) { // Checks if its not the first slide
+                        currentIndex--; // Move to previous slide
+                        carousel.style.transform = `translateX(-${currentIndex * 100}%)`; // Apply css to shift the carousel to the left
                     }
                 });
 
-                rightButton.addEventListener('click', () => {
-                    if (currentIndex < carousel.children.length - 1) {
-                        currentIndex++;
-                        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                rightButton.addEventListener('click', () => { //Event listener for right button
+                    if (currentIndex < carousel.children.length - 1) { // checks if its not the last slide
+                        currentIndex++; // Move to next slide
+                        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;  // Apply css to shift the carousel to the right
                     }
                 });
             });
